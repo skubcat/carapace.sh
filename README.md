@@ -1,2 +1,3 @@
 # recipe-website.sh
- Generate a static recipe website based on a simple plain text format.
+
+Code to generate the vegetarian/vegan plain-text website [name-here].
