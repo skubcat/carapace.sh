@@ -1,9 +1,7 @@
-#recipe-website.sh
-
 Code to generate the vegetarian/vegan plain-text website [name-here].
 
 
-# ------
+---
 Have a recipe? Send a pull request. The file must be in txt and in this format:
 
 ```
