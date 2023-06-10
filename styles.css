@@ -106,6 +106,9 @@ a:active {
   text-decoration: none;
 } 
 
+a { color: #aaa; text-decoration: none; }
+a:hover { color: #fff; text-decoration: underline; }
+
 footer {
     border-top: 1px solid white;
     padding: 15px;
@@ -115,3 +118,6 @@ header {
     border-bottom: 1px solid white;
     padding: 15px;
 }
+
+a { color: #aaa; text-decoration: none; }
+a:hover { color: #fff; text-decoration: underline; }
