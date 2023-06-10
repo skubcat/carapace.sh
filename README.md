@@ -1,12 +1,12 @@
-* recipe-website.sh
+#recipe-website.sh
 
 Code to generate the vegetarian/vegan plain-text website [name-here].
 
 
-
+# ------
 Have a recipe? Send a pull request. The file must be in txt and in this format:
 
-#+begin_src
+```
 Recipe Name (1st line will *always* be recipe name)
 
 Ingredients as a list seperated by newlines.
@@ -21,11 +21,11 @@ y
 y
 y
 
-#+end_src
+```
 
 This would roughly output: 
 
-#+begin_src html
+``` html
 <!DOCTYPE html>
 <html lang ='en'>
 <head>
@@ -55,4 +55,4 @@ This would roughly output:
     </article>
   </main>
   </article>
-#+end_src 
+```
