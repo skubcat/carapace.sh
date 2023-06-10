@@ -35,11 +35,13 @@ gen_recipes() {
         INGREDIENTS=$(awk -v RS='' 'NR==2' "$f" | sed 's/^/<li>/g; s/$/<\/li>/')
         INSTRUCTIONS=$(awk -v RS='' 'NR==3' "$f" | sed 's/^/<li>/g; s/$/<\/li>/')
         GEN_PATH="./generated-website/$RECIPE_CLEANED_FILENAME.html"
+        gen_header $GEN_PATH
         { echo "$HEADER"  
-        echo "<main><article><h1>$RECIPE_NAME</h1><h2>Ingredients</h2>"
+        echo "<main><article><h1>$RECIPE_NAME</h1><h3>Ingredients</h3>"
         echo "<ul>$INGREDIENTS</ul>" 
-        echo "<h2>Instructions</h2><ul>$INSTRUCTIONS</ul></main></article>"
+        echo "<h3>Instructions</h3><ul>$INSTRUCTIONS</ul></main></article>"
         } >> "$GEN_PATH"
+
     done
 }
 
@@ -73,12 +75,13 @@ gen_footer() {
 
 gen_about() {
     {
-        
-        echo "<p style="padding: 1rem">I made this website in response to https://based.cooking/. They kept rejecting vegetarian/vegan recipes, and they said it would best fit {bugman.cooking} instead. So I made it :-)</p>"
+        echo "<article>"
+        echo "<p>I made this website in response to https://based.cooking/. They kept rejecting vegan recipes, and they said it would best fit {bugman.cooking} instead. I needed a css/html only website for vegan recipes, so I made it!</p>"
         echo "<br>"
-        echo "<p style="padding: 1rem">This website is against all unjustified hierarchies.</p>"
+        echo "<p>This website is against all unjustified hierarchies.</p>"
         echo "<br>"
-        echo "<3"
+        echo "<P> Forever without ads, bloat, or javascript. <3</p>"
+        echo "</article>"
     } >> ./generated-website/about.html
 
 }
