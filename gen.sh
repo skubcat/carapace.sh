@@ -73,7 +73,12 @@ gen_footer() {
 
 gen_about() {
     {
-        echo "I made this website in response to https://based.cooking/. They kept rejecting vegetarian/vegan recipes, and they said it would best fit "bugman.cooking" instead. So I made it :-)"
+        
+        echo "<p style="padding: 1rem">I made this website in response to https://based.cooking/. They kept rejecting vegetarian/vegan recipes, and they said it would best fit {bugman.cooking} instead. So I made it :-)</p>"
+        echo "<br>"
+        echo "<p style="padding: 1rem">This website is against all unjustified hierarchies.</p>"
+        echo "<br>"
+        echo "<3"
     } >> ./generated-website/about.html
 
 }
