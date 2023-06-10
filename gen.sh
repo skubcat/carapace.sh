@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-HEADER="<!DOCTYPE html><html lang ='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>nav-menu</title><link rel='stylesheet' href='./styles.css'><meta name='vegnav' content='pagedesc'></head>"
+HEADER="<!DOCTYPE html><html lang ='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>bugman.cooking</title><link rel='stylesheet' href='./styles.css'><meta name='vegnav' content='pagedesc'></head>"
 FILES=$(ls -1 ./recipes/*)
 
 clean_up() {
@@ -37,8 +37,8 @@ gen_recipes() {
 
 gen_nav() {
     echo "Generating nav-menu"
-    echo "$HEADER" >> ./generated-website/nav-menu.html
-    echo "<header><nav><ul>" >> ./generated-website/nav-menu.html
+    echo "$HEADER" >> ./generated-website/index.html
+    echo "<header><nav><ul>" >> ./generated-website/index.html
 
     RECIPE_COUNT=0
     for f in $FILES
@@ -46,10 +46,10 @@ gen_nav() {
         RECIPE_COUNT=$((RECIPE_COUNT + 1))
         RECIPE_CLEANED_FILENAME=$(echo "$f" | sed 's/\.\/recipes\///; s/.txt//') 
         recipetitle=$(head -q -n 1 "$f")
-        echo "<li><a href='./$RECIPE_CLEANED_FILENAME.html'>$recipetitle</a></li>" >> ./generated-website/nav-menu.html
+        echo "<li><a href='./$RECIPE_CLEANED_FILENAME.html'>$recipetitle</a></li>" >> ./generated-website/index.html
     done
 
-    echo "</nav></ul></header><p>Recipes: $RECIPE_COUNT</p>" >> ./generated-website/nav-menu.html
+    echo "</nav></ul></header><p>Recipes: $RECIPE_COUNT</p>" >> ./generated-website/index.html
 }
 
 clean_up
