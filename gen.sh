@@ -78,7 +78,7 @@ gen_about() {
 
 clean_up
 gen_header "./generated-website/index.html"
-gen_header "./generated-website/about..html"
+gen_header "./generated-website/about.html"
 gen_recipes
 gen_nav
 gen_about
