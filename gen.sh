@@ -37,8 +37,8 @@ gen_recipes() {
 
 gen_nav() {
     echo "Generating nav-menu"
-    echo "$HEADER" >> ./generated-website/index.html
-    echo "<header><nav><ul>" >> ./generated-website/index.html
+    echo "$HEADER" >> ./generated-website/nav-menu.html
+    echo "<header><nav><ul>" >> ./generated-website/nav-menu.html
 
     RECIPE_COUNT=0
     for f in $FILES
@@ -46,10 +46,10 @@ gen_nav() {
         RECIPE_COUNT=$((RECIPE_COUNT + 1))
         RECIPE_CLEANED_FILENAME=$(echo "$f" | sed 's/\.\/recipes\///; s/.txt//') 
         recipetitle=$(head -q -n 1 "$f")
-        echo "<li><a href='./$RECIPE_CLEANED_FILENAME.html'>$recipetitle</a></li>" >> ./generated-website/index.html
+        echo "<li><a href='./$RECIPE_CLEANED_FILENAME.html'>$recipetitle</a></li>" >> ./generated-website/nav-menu.html
     done
 
-    echo "</nav></ul></header><p>Recipes: $RECIPE_COUNT</p>" >> ./generated-website/index.html
+    echo "</nav></ul></header><p>Recipes: $RECIPE_COUNT</p>" >> ./generated-website/nav-menu.html
 }
 
 clean_up
