@@ -103,6 +103,7 @@ a:visited,
 a:hover,
 a:active {
   color: white;
+  text-decoration: none;
 } 
 
 footer {
@@ -114,3 +115,6 @@ header {
     border-bottom: 1px solid white;
     padding: 15px;
 }
+
+a { color: #aaa; text-decoration: none; }
+a:hover { color: #fff; text-decoration: underline; }

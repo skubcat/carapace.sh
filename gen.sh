@@ -66,11 +66,20 @@ gen_footer() {
     echo "<footer>"
     echo "<p>Powered by <a href="https://github.com/skubcat/carapace.sh">carapace.sh</a></p><br>"
     echo "</footer>"
-    } >> ./generated-website/index.html
+    } >> $1
+}
+
+gen_about() {
+    {
+        echo "I made this website in response to https://based.cooking/. They kept rejecting vegetarian/vegan recipes, and they said it would best fit "bugman.cooking" instead. So I made it :-)"
+    } >> ./generated-website/about.html
+
 }
 
 clean_up
 gen_header
 gen_recipes
 gen_nav
-gen_footer
+gen_footer "./generated-website/index.html"
+gen_footer "./generated-website/about.html"
+
