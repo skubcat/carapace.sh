@@ -17,7 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run build script
-        run: ./gen.sh
+        run: |
+          sudo chmod 600 ./gen.sh
+          ./gen.sh
         shell: bash
       - name: Deploy
         uses: bcomnes/deploy-to-neocities@v1
