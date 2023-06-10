@@ -15,6 +15,14 @@ clean_up() {
     cp ./styles.css ./generated-website
 }
 
+gen_header() {
+    {
+    echo "<header> <a href="https://bugmancooking.neocities.org/">[bugman.cooking]</a>"
+    echo "<a href="https://bugmancooking.neocities.org/about">[about]</a>"
+    echo "<a href="https://bugmancooking.neocities.org/dlsite">[download]</a>"
+    echo "</header>" 
+    } >> ./generated-website/index.html
+}
 
 gen_recipes() {
     echo "Generating recipes"
@@ -49,9 +57,20 @@ gen_nav() {
         echo "<li><a href='./$RECIPE_CLEANED_FILENAME.html'>$recipetitle</a></li>" >> ./generated-website/index.html
     done
 
-    echo "</nav></ul></header><p>Recipes: $RECIPE_COUNT</p>" >> ./generated-website/index.html
+    echo "</nav></ul></header>" >> ./generated-website/index.html
+}
+
+gen_footer() {
+    echo "Generating footer"
+    {
+    echo "<footer>"
+    echo "<p>Powered by <a href="https://github.com/skubcat/carapace.sh">carapace.sh</a></p><br>"
+    echo "</footer>"
+    } >> ./generated-website/index.html
 }
 
 clean_up
+gen_header
 gen_recipes
 gen_nav
+gen_footer
