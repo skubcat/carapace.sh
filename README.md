@@ -1,4 +1,4 @@
-Code to generate the vegetarian/vegan plain-text website [bugman.cooking](https://bugmancooking.neocities.org/).
+A shell script to generate the vegetarian/vegan static HTML website [bugman.cooking](https://bugmancooking.neocities.org/).
 
 
 ---
