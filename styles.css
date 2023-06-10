@@ -96,3 +96,11 @@ article > * + * {
 }
 
 h1 { border-bottom: 1px solid white }
+
+
+a:link,
+a:visited, 
+a:hover,
+a:active {
+  color: blue;
+} 
