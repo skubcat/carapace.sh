@@ -97,7 +97,7 @@ article > * + * {
 
 h1 { border-bottom: 1px solid white }
 
-
+a,
 a:link,
 a:visited, 
 a:hover,
@@ -105,6 +105,9 @@ a:active {
   color: white;
   text-decoration: none;
 } 
+
+a { color: #aaa; text-decoration: none; }
+a:hover { color: #fff; text-decoration: underline; }
 
 footer {
     border-top: 1px solid white;

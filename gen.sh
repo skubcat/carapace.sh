@@ -21,7 +21,7 @@ gen_header() {
     echo "<a href="https://bugmancooking.neocities.org/about">[about]</a>"
     echo "<a href="https://bugmancooking.neocities.org/dlsite">[download]</a>"
     echo "</header>" 
-    } >> ./generated-website/index.html
+    } >> $1
 }
 
 gen_recipes() {
@@ -77,9 +77,11 @@ gen_about() {
 }
 
 clean_up
-gen_header
+gen_header "./generated-website/index.html"
+gen_header "./generated-website/about..html"
 gen_recipes
 gen_nav
+gen_about
 gen_footer "./generated-website/index.html"
 gen_footer "./generated-website/about.html"
 
