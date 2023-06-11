@@ -2,17 +2,16 @@ A shell script to generate the vegetarian/vegan static HTML website [bugman.cook
 
 
 ---
-Have a recipe? Send a pull request. The file must be in txt and in this format:
+Have a recipe? Send a pull request. The file must be in plain text, and follow this format.
 
 ```
 Recipe Name (1st line will *always* be recipe name)
-
+(one blank line)
 Ingredients as a list seperated by newlines.
 x
 x
 x
-
-
+(one blank line)
 Instructions as a list seperated by newlines.
 y
 y
