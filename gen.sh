@@ -76,9 +76,9 @@ gen_footer() {
 gen_about() {
     {
         echo "<article>"
-        echo "<p>I made this website in response to https://based.cooking/. They kept rejecting vegan recipes, and they said it would best fit {bugman.cooking} instead. I needed a css/html only website for vegan recipes, so I made it!</p>"
-        echo "<br>"
-        echo "<P> Forever without ads, bloat, or javascript. <3</p>"
+        echo "<p>I made this website in response to https://based.cooking/. They kept rejecting vegan recipes, and they said it would best fit {bugman.cooking} instead. I needed a css/html only website for vegan recipes, so I made it!</p><br>"
+        echo "<p>Forever without ads, bloat, or javascript. <3</p><br>"
+        echo "<p>Submit recipes <a href='https://github.com/skubcat/carapace.sh'>here</a><p>"
         echo "</article>"
     } >> ./generated-website/about.html
 
