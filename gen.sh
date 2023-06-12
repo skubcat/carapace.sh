@@ -20,7 +20,7 @@ gen_header() {
     echo $HEADER
     echo "<header> <a href="https://bugmancooking.neocities.org/">[bugman.cooking]</a>"
     echo "<a href="https://bugmancooking.neocities.org/about">[about]</a>"
-    echo "<a href="https://bugmancooking.neocities.org/dlsite">[download]</a>"
+    echo "<a href="https://github.com/skubcat/carapace.sh/archive/refs/heads/main.zip">[download]</a>"
     echo "</header>" 
     
     } >> $1
