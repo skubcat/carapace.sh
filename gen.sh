@@ -18,14 +18,14 @@ clean_up() {
 gen_header() {
     {
     if [ "$2" = 1 ]; then
-	echo -n $HEADER    
+	echo "$HEADER"
     fi
-    echo -n "<header> <a href="https://bugmancooking.neocities.org/">[bugman.cooking]</a>"
-    echo -n "<a href="https://bugmancooking.neocities.org/about">[about]</a>"
-    echo -n "<a href="https://bugmancooking.neocities.org/tags">[recipe tags]</a>"
-    echo -n "<a href="https://github.com/skubcat/carapace.sh/archive/refs/heads/main.zip">[download]</a>"
-    echo -n "</header>" 
-    } >> $1
+    echo "<header> <a href='https://bugmancooking.neocities.org/'>[bugman.cooking]</a>"
+    echo "<a href='https://bugmancooking.neocities.org/about'>[about]</a>"
+    echo "<a href='https://bugmancooking.neocities.org/tags'>[recipe tags]</a>"
+    echo "<a href='https://github.com/skubcat/carapace.sh/archive/refs/heads/main.zip'>[download]</a>"
+    echo  "</header>" 
+    } >> "$1"
 }
 
 gen_recipes() {
@@ -37,20 +37,20 @@ gen_recipes() {
         INGREDIENTS=$(awk -v RS='' 'NR==2' "$f" | sed 's/^/<li>/g; s/$/<\/li>/')
         INSTRUCTIONS=$(awk -v RS='' 'NR==3' "$f" | sed 's/^/<li>/g; s/$/<\/li>/')
         GEN_PATH="./generated-website/$RECIPE_CLEANED_FILENAME.html"
-        gen_header $GEN_PATH
+        gen_header "$GEN_PATH"
         {
-	echo -n "$HEADER"
-        echo -n "<main><article><h1>$RECIPE_NAME</h1><h3>Ingredients</h3>"
-        echo -n "<ul>$INGREDIENTS</ul>" 
-        echo -n "<h3>Instructions</h3><ul>$INSTRUCTIONS</ul></main></article>"
+	echo  "$HEADER"
+        echo  "<main><article><h1>$RECIPE_NAME</h1><h3>Ingredients</h3>"
+        echo  "<ul>$INGREDIENTS</ul>" 
+        echo  "<h3>Instructions</h3><ul>$INSTRUCTIONS</ul></main></article>"
         } >> "$GEN_PATH"
     done
 }
 
 gen_nav() {
     echo "Generating nav-menu"
-    echo -n "$HEADER" >> ./generated-website/index.html
-    echo -n "<header><nav><ul>" >> ./generated-website/index.html
+    echo  "$HEADER" >> ./generated-website/index.html
+    echo  "<header><nav><ul>" >> ./generated-website/index.html
 
     RECIPE_COUNT=0
     for f in $FILES
@@ -58,7 +58,7 @@ gen_nav() {
         RECIPE_COUNT=$((RECIPE_COUNT + 1))
         RECIPE_CLEANED_FILENAME=$(echo "$f" | sed 's/\.\/recipes\///; s/.txt//') 
         recipetitle=$(head -q -n 1 "$f")
-        echo -n "<li><a href='./$RECIPE_CLEANED_FILENAME.html'>$recipetitle</a></li>" >> ./generated-website/index.html
+        echo  "<li><a href='./$RECIPE_CLEANED_FILENAME.html'>$recipetitle</a></li>" >> ./generated-website/index.html
     done
 
     echo "</nav></ul></header>" >> ./generated-website/index.html
@@ -66,8 +66,8 @@ gen_nav() {
 
 gen_tags() {
     HEADER="<!DOCTYPE html><html lang ='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>bugman.cooking</title><link rel='stylesheet' href='../styles.css'><meta name='vegnav' content='pagedesc'></head>"
-    ARRAYHOLDER=()
-    echo $HEADER >> ./generated-website/tags.html
+    echo "$HEADER" >> ./generated-website/tags.html
+
     gen_header ./generated-website/tags.html
 
     for f in $FILES; do
@@ -122,19 +122,19 @@ gen_tags() {
 gen_footer() {
     echo "Generating footer"
     {
-    echo -n "<footer>"
-    echo -n "<p>Powered by <a href="https://github.com/skubcat/carapace.sh">carapace.sh</a></p><br>"
-    echo -n "</footer>"
+    echo  "<footer>"
+    echo  "<p>Powered by <a href="https://github.com/skubcat/carapace.sh">carapace.sh</a></p><br>"
+    echo  "</footer>"
     } >> $1
 }
 
 gen_about() {
     {
-        echo -n "<article>"
-        echo -n "<p>I made this website in response to https://based.cooking/. They kept rejecting vegan recipes, and they said it would best fit {bugman.cooking} instead. I needed a css/html only website for vegan recipes, so I made it!</p><br>"
-        echo -n "<p>Forever without ads, bloat, or javascript. <3</p><br>"
-        echo -n "<p>Submit recipes <a href='https://github.com/skubcat/carapace.sh'>{here}</a><p>"
-        echo -n "</article>"
+        echo  "<article>"
+        echo  "<p>I made this website in response to https://based.cooking/. They kept rejecting vegan recipes, and they said it would best fit {bugman.cooking} instead. I needed a css/html only website for vegan recipes, so I made it!</p><br>"
+        echo  "<p>Forever without ads, bloat, or javascript. <3</p><br>"
+        echo  "<p>Submit recipes <a href='https://github.com/skubcat/carapace.sh'>{here}</a><p>"
+        echo  "</article>"
     } >> ./generated-website/about.html
 }
 
