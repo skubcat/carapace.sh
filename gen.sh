@@ -66,7 +66,6 @@ gen_nav() {
 
 gen_tags() {
     HEADER="<!DOCTYPE html><html lang ='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>bugman.cooking</title><link rel='stylesheet' href='../styles.css'><meta name='vegnav' content='pagedesc'></head>"
-    ARRAYHOLDER=()
     echo $HEADER >> ./generated-website/tags.html
     gen_header ./generated-website/tags.html
 
