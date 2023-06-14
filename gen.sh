@@ -32,7 +32,8 @@ gen_recipes() {
     echo "Generating recipes"
     for f in $FILES
     do
-        RECIPE_NAME=$(head -1 recipes/$(echo "$f" | sed 's/\.\/recipes\///'))
+	RECIPE_NAME="$(head -1 "recipes/$(echo "$f" | sed 's/\.\/recipes\///')")"
+	echo "Recipe name check at line 36: $RECIPE_NAME"
         RECIPE_CLEANED_FILENAME=$(echo "$f" | sed 's/\.\/recipes\///; s/.txt//') # The filename of a recipe without its extension.
         INGREDIENTS=$(awk -v RS='' 'NR==2' "$f" | sed 's/^/<li>/g; s/$/<\/li>/')
         INSTRUCTIONS=$(awk -v RS='' 'NR==3' "$f" | sed 's/^/<li>/g; s/$/<\/li>/')
@@ -72,28 +73,31 @@ gen_tags() {
 
     for f in $FILES; do
         recipetags=$(sed -n '2p' "$f")
-	stringarray=($recipetags)
 	for i in $recipetags; do
-	    ARRAYHOLDER+=("$i")
+	        RESULT="${RESULT:+${RESULT} }${i}" # https://chris-lamb.co.uk/posts/joining-strings-in-posix-shell
+	        echo "Recipe tags: $RESULT"
 	done
     done
    
-    ARRAYHOLDER=$(echo ${ARRAYHOLDER[@]} | sed 's/ /\n/g' | sort | uniq) # Get only unique tags, the set of all tags. We don't want repeats.
-    
-    echo "<main><article>" >> ./generated-website/tags.html
-    echo "<h1>Tags</h1>" >> ./generated-website/tags.html
-    echo "<ul>" >> ./generated-website/tags.html
-    
-    for i in $ARRAYHOLDER; do # Generate each tag page.
-	echo $HEADER >> ./generated-website/tags/$i.html
-	gen_header ./generated-website/tags/$i.html
+    PLACEHOLDER=$(echo "${RESULT}" | sed 's/ /\n/g' | sort | uniq) # Get only unique tags, the set of all tags. We don't want repeats.
+    echo "Placeholder value at line 82: $PLACEHOLDER"
+
+    {
+    echo "<main><article>"
+    echo "<h1>Tags</h1>"
+    echo "<ul>"
+    } >> ./generated-website/tags.html
+    for i in $PLACEHOLDER; do # Generate each tag page.
+	echo "Placeholder value at line 91: $i"
+	echo "$HEADER" >> "./generated-website/tags/$i.html"
+	gen_header "./generated-website/tags/$i.html"
 	{
 	echo "<article>"
-	echo "<h1>$(echo $i | sed 's/_/ /g; s/\b\(.\)/\u\1/g')</h1>"
+	echo "<h1>$(echo "$i" | sed 's/_/ /g; s/\b\(.\)/\u\1/g')</h1>"
 	echo "<nav><ul>"
-	} >> ./generated-website/tags/$i.html
-	echo "<li><a href='tags/$i.html'>$(echo $i | sed 's/_/ /g; s/\b\(.\)/\u\1/g')</a></li>" >> ./generated-website/tags.html
-	echo $i
+	} >> "./generated-website/tags/$i.html"
+	echo "<li><a href='tags/$i.html'>$(echo "$i" | sed 's/_/ /g; s/\b\(.\)/\u\1/g')</a></li>" >> ./generated-website/tags.html
+	echo "$i"
     done
 
     echo "</ul>" >> ./generated-website/tags.html
@@ -107,7 +111,7 @@ gen_tags() {
 	for i in $recipetags; do
 	    {
 	    echo "<li><a href='../$RECIPE_CLEANED_FILENAME.html'>$recipetitle</a></li>"
-	    } >> ./generated-website/tags/$i.html
+	    } >> "./generated-website/tags/$i.html"
 	done
     done
 
@@ -115,7 +119,7 @@ gen_tags() {
     {
 	echo "</nav</ul>"
 	echo "</article>"
-    } >> ./generated-website/tags/$i.html
+    } >> "./generated-website/tags/$i.html"
     done
 }
 
@@ -123,9 +127,9 @@ gen_footer() {
     echo "Generating footer"
     {
     echo  "<footer>"
-    echo  "<p>Powered by <a href="https://github.com/skubcat/carapace.sh">carapace.sh</a></p><br>"
+    echo  "<p>Powered by <a href='https://github.com/skubcat/carapace.sh'>carapace.sh</a></p><br>"
     echo  "</footer>"
-    } >> $1
+    } >> "$1"
 }
 
 gen_about() {
