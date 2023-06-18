@@ -6,6 +6,7 @@ Have a recipe? Send a pull request. The file must be in plain text, and follow t
 
 ```
 Recipe Name (1st line will *always* be recipe name)
+(tags)
 (one blank line)
 Ingredients as a list seperated by newlines.
 x
