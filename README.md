@@ -20,7 +20,6 @@ y
 y
 
 ```
-
 This would roughly output: 
 
 ``` html
